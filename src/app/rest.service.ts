@@ -11,6 +11,7 @@ export class RestService {
   private RESTAURANT_BASE_URL = 'http://localhost:8765/restaurantapi/v1';
   private BOOKING_BASE_URL = 'http://localhost:8765/bookingapi/v1';
   private USER_BASE_URL = 'http://localhost:8765/userapi/v1';
+  private AUTH_BASE_URL = 'http://localhost:8765/authapi/';
   private AI_BASE_URL = 'http://localhost:8765/userapi/v1';
   // private loggedIn = new BehaviorSubject<boolean>(false);
   currentUser: any = null;// = new BehaviorSubject<any>({});
@@ -134,7 +135,7 @@ export class RestService {
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${this.USER_BASE_URL}/users/authenticate`, { username, password }).pipe(
+    return this.http.post<any>(`${this.AUTH_BASE_URL}/user`, { username, password }).pipe(
       map((user: { token: any; }) => {
         if (user && user.token) {
           this.currentUser = user;
